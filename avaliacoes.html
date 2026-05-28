@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Avaliações</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="avaliacoes">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="goTo('home')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+    <div class="sbscreen-body">
+      <div class="aval-header-row">
+        <div>
+          <div class="sbscreen-title">Avaliações</div>
+          <div class="sbscreen-subtitle" style="margin-bottom:0;">Veja e gerencie suas avaliações sobre os filmes.</div>
+        </div>
+        <button class="aval-new-btn" onclick="showToast('Selecione um filme para avaliar','#c8960c')">Avaliar Filme</button>
+      </div>
+      <div class="sb-panel" style="padding:4px 14px;">
+        <div class="aval-item">
+          <div class="aval-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ag1" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#1565c0"/><stop offset="100%" stop-color="#020510"/></radialGradient></defs><rect width="120" height="180" fill="url(#ag1)"/><circle cx="85" cy="38" r="18" fill="#1e88e5" opacity="0.6"/><polygon points="60,55 54,95 66,95" fill="#e0e0e0"/></svg></div>
+          <div class="aval-info">
+            <div class="aval-title">Vingadores: Doutor Destino</div>
+            <div class="aval-date">Você avaliou em 25/05/2024</div>
+            <div class="aval-stars" style="color: #f5c518;">★★★★★</div>
+            <div class="aval-text">Filme incrível! Efeitos visuais impressionantes e uma história envolvente do começo ao fim.</div>
+          </div>
+          <div class="aval-actions">
+            <button class="aval-edit-btn" onclick="showToast('Editando avaliação...','#3b82f6')">Editar avaliação</button>
+            <button class="aval-del-btn" onclick="showToast('Avaliação removida','#E31C1C')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(227,80,80,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
+          </div>
+        </div>
+        <div class="aval-item">
+          <div class="aval-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ag2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#ff6b00"/><stop offset="100%" stop-color="#1a0505"/></radialGradient></defs><rect width="120" height="180" fill="url(#ag2)"/><circle cx="60" cy="72" r="18" fill="rgba(255,240,180,0.8)"/></svg></div>
+          <div class="aval-info">
+            <div class="aval-title">Star Wars: O Mandaloriano e Grogu</div>
+            <div class="aval-date">Você avaliou em 18/05/2024</div>
+            <div class="aval-stars" style="color: #f5c518;">★★★★☆</div>
+            <div class="aval-text">Ótimas cenas de ação e muita adrenalina. Recomendo!</div>
+          </div>
+          <div class="aval-actions">
+            <button class="aval-edit-btn" onclick="showToast('Editando avaliação...','#3b82f6')">Editar avaliação</button>
+            <button class="aval-del-btn" onclick="showToast('Avaliação removida','#E31C1C')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(227,80,80,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
+          </div>
+        </div>
+        <div class="aval-item">
+          <div class="aval-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ag3" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#2e7d32"/><stop offset="100%" stop-color="#0a1a0a"/></radialGradient></defs><rect width="120" height="180" fill="url(#ag3)"/></svg></div>
+          <div class="aval-info">
+            <div class="aval-title">O Diabo Veste Prada 2</div>
+            <div class="aval-date">Você avaliou em 10/05/2024</div>
+            <div class="aval-stars" style="color: #f5c518;">★★★★☆</div>
+            <div class="aval-text">Fui sem qualquer expectativa e me surpreendi. um roteiro bem adaptado para continuação e ótimo desenvolvimento da trama, suave e delicado de assistir.</div>
+          </div>
+          <div class="aval-actions">
+            <button class="aval-edit-btn" onclick="showToast('Editando avaliação...','#3b82f6')">Editar avaliação</button>
+            <button class="aval-del-btn" onclick="showToast('Avaliação removida','#E31C1C')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(227,80,80,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
+          </div>
+        </div>
+        <div class="aval-item">
+          <div class="aval-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ag4" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#6a0dad"/><stop offset="100%" stop-color="#050005"/></radialGradient></defs><rect width="120" height="180" fill="url(#ag4)"/></svg></div>
+          <div class="aval-info">
+            <div class="aval-title">Michael</div>
+            <div class="aval-date">Você avaliou em 02/05/2024</div>
+            <div class="aval-stars" style="color: #f5c518;">★★★★★</div>
+            <div class="aval-text">Filme maravilhoso, Jaafar brilhou como Michael, coreografias impecáveis e em certos pontos ele estava a cara de Michael.</div>
+          </div>
+          <div class="aval-actions">
+            <button class="aval-edit-btn" onclick="showToast('Editando avaliação...','#3b82f6')">Editar avaliação</button>
+            <button class="aval-del-btn" onclick="showToast('Avaliação removida','#E31C1C')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(227,80,80,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

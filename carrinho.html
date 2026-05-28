@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Meu Carrinho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="carrinho">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="window.history.back()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+    
+    <div class="sbscreen-body">
+      <div class="sbscreen-title">Meu Carrinho</div>
+      <div class="sbscreen-subtitle">Revise seus itens antes de finalizar o pedido.</div>
+
+      <div id="cartEmpty" style="display:none; text-align:center; padding: 60px 20px;">
+        <div style="font-size:48px; margin-bottom:16px;">🛒</div>
+        <div style="color:#fff; font-weight:700; font-size:18px; margin-bottom:8px;">Seu carrinho está vazio</div>
+        <div style="color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:24px;">Adicione ingressos e combos para continuar.</div>
+        <button class="btn-primary" onclick="goTo('home')" style="max-width: 200px; margin: 0 auto;">Ver Filmes</button>
+      </div>
+
+      <div id="cartContent">
+        <div class="sb-panel">
+          <div style="display:flex; gap:16px; align-items:center;">
+            <div id="cartPoster" style="width:65px; height:100px; border-radius:6px; overflow:hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+              </div>
+            <div style="flex:1;">
+              <div id="cartMovieName" style="color:#fff; font-weight:700; font-size:16px; margin-bottom: 4px;">Nome do Filme</div>
+              <div id="cartSession" style="color:rgba(255,255,255,0.6); font-size:12px; margin-bottom: 4px;">Sessão: --</div>
+              <div style="color:#3b82f6; font-size:12px; font-weight:600; display:flex; align-items:center; gap:4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Assentos: <span id="cartSeats">--</span>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div id="cartQtyBadge" style="background:rgba(255,255,255,0.1); color:#fff; font-size:11px; font-weight:700; padding:4px 8px; border-radius:12px; display:inline-block; margin-bottom:8px;">0 un.</div>
+              <div id="cartPrice" style="color:#fff; font-weight:800; font-size:16px;">R$ 0,00</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; display:flex; justify-content:flex-end;">
+            <button class="aval-del-btn" style="padding:8px 16px; background:rgba(227,28,28,0.1); color:#E31C1C; border:none; border-radius:6px; font-weight:700; font-size:12px; cursor:pointer;" onclick="clearCart()">Remover Itens</button>
+          </div>
+        </div>
+
+        <div class="sb-panel" style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:14px;">
+            <span style="color:rgba(255,255,255,0.7);">Subtotal</span>
+            <span id="cartSubtotal" style="color:#fff; font-weight:600;">R$ 0,00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:14px;">
+            <span style="color:rgba(255,255,255,0.7);">Taxa de Conveniência</span>
+            <span style="color:#22c55e; font-weight:700;">Grátis</span>
+          </div>
+          <div style="height:1px; background:rgba(255,255,255,0.1); margin:16px 0;"></div>
+          <div style="display:flex; justify-content:space-between; font-size:18px; align-items:center;">
+            <span style="color:#fff; font-weight:800;">Total</span>
+            <span id="cartTotalFinal" style="color:#E31C1C; font-weight:900; font-size:22px;">R$ 0,00</span>
+          </div>
+
+          <button class="btn-primary" style="margin-top:24px; height:48px; font-size:15px;" onclick="goTo('confirm')">Ir para Pagamento</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+<script>setTimeout(renderCartPage, 50);</script>
+</body>
+</html>

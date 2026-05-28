@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Pagamento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="confirm">
+    <div class="pay-topbar">
+      <button class="pay-back-btn" onclick="goTo('tickets')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="pay-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="pay-secure">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Seguro
+      </div>
+    </div>
+
+    <div class="confirm-body">
+      <div class="confirm-movie-card">
+        <div class="confirm-movie-inner">
+          <div class="confirm-movie-poster" id="confirmPoster"></div>
+          <div class="confirm-movie-info">
+            <div class="confirm-movie-title" id="confirmTitle">Aventura Espacial</div>
+            <div class="confirm-meta-row">
+              <div class="confirm-meta-dot"></div>
+              <span>PH <b id="confirmTime">17:30</b></span>
+            </div>
+            <div class="confirm-meta-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Horário: <b id="confirmHorario">17:30</b></span>
+            </div>
+            <div class="confirm-meta-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
+              <span>Assentos: <b id="confirmSeats">—</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-section-title">Dados do Cliente</div>
+      <div class="confirm-field">
+        <label>Nome</label>
+        <input type="text" placeholder="Nome completo" id="clientName"/>
+      </div>
+      <div class="confirm-field">
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com" id="clientEmail"/>
+      </div>
+
+      <div class="confirm-section-title" style="margin-top:6px;">Pagamento:</div>
+      <div class="pay-method-row">
+        <button class="pay-method-btn active" id="pmCard" onclick="selectPayMethod('card')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Cartão de Crédito
+        </button>
+        <button class="pay-method-btn" id="pmPix" onclick="selectPayMethod('pix')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Pix
+        </button>
+      </div>
+    </div>
+
+    <div class="confirm-bottom">
+      <button class="btn-primary" onclick="proceedPayment()">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="pay-card">
+    <div class="pay-topbar">
+      <button class="pay-back-btn" onclick="goTo('confirm')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="pay-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="pay-secure">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Ambiente Seguro
+      </div>
+    </div>
+
+    <div class="paycard-body">
+      <div class="paycard-page-title">Pagamento</div>
+      <div class="paycard-page-sub">Preencha os dados do seu cartão de crédito para concluir a compra.</div>
+
+      <div class="paycard-section-title">Método de pagamento</div>
+      <div class="paycard-methods">
+        <button class="paycard-method-btn active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Cartão de Crédito
+        </button>
+        <button class="paycard-method-btn" onclick="goTo('pay-pix')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          PIX
+        </button>
+      </div>
+
+      <div class="paycard-section-title">Dados do cartão</div>
+
+      <div class="paycard-field">
+        <label>Número do cartão</label>
+        <div class="paycard-input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" oninput="fmtCard(this)"/>
+        </div>
+      </div>
+
+      <div class="paycard-field">
+        <label>Nome no cartão</label>
+        <div class="paycard-input-wrap">
+          <input type="text" placeholder="Nome como está no cartão"/>
+        </div>
+      </div>
+
+      <div class="paycard-row">
+        <div class="paycard-field">
+          <label>Validade</label>
+          <div class="paycard-input-wrap">
+            <input type="text" placeholder="MM / AA" maxlength="7" oninput="fmtExpiry(this)"/>
+          </div>
+        </div>
+        <div class="paycard-field">
+          <label>CVV <span title="3 dígitos no verso do cartão" style="opacity:0.5;cursor:help;margin-left:3px;">ⓘ</span></label>
+          <div class="paycard-input-wrap">
+            <input type="text" placeholder="123" maxlength="3"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="paycard-field">
+        <label>Parcelamento</label>
+        <div class="paycard-select-wrap">
+          <select id="installSelect">
+            <option>1x de R$ 40,00 sem juros</option>
+            <option>2x de R$ 20,00 sem juros</option>
+            <option>3x de R$ 13,67 sem juros</option>
+          </select>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="paycard-secure">
+        <div class="paycard-secure-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8960c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="paycard-secure-text">
+          <div class="paycard-secure-title">Compra 100% segura</div>
+          <div class="paycard-secure-desc">Seus dados estão protegidos e não armazenamos informações do seu cartão.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paycard-bottom">
+      <button class="paycard-bottom-back" onclick="goTo('confirm')">Voltar</button>
+      <div class="paycard-total-block">
+        <span class="paycard-total-label">Total a pagar</span>
+        <span class="paycard-total-value" id="paycardTotal">R$ 0,00</span>
+      </div>
+      <button class="paycard-pay-btn" onclick="completePurchase()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Pagar Agora
+      </button>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="pay-pix">
+    <div class="pay-topbar">
+      <button class="pay-back-btn" onclick="goTo('confirm')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="pay-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="pay-secure">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Ambiente Seguro
+      </div>
+    </div>
+
+    <div class="pix-body">
+      <div class="pix-page-title">Pagamento</div>
+      <div class="pix-page-sub">Escolha o método de pagamento.</div>
+
+      <div class="pix-section-title">Método de pagamento</div>
+      <div class="pix-methods">
+        <button class="pix-method-btn" onclick="goTo('pay-card')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Cartão de Crédito
+        </button>
+        <button class="pix-method-btn active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          PIX
+        </button>
+      </div>
+
+      <div class="pix-section-title">Pague com PIX</div>
+      <p style="font-family:'Raleway',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:14px;line-height:1.5;">
+        Escaneie o QR Code com o aplicativo do seu banco ou copie o código PIX e cole na área de pagamentos.
+      </p>
+
+      <div class="pix-qr-card">
+        <div class="pix-qr-box">
+          <svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+            <rect width="37" height="37" fill="white"/>
+            <rect x="1" y="1" width="7" height="7" fill="black"/><rect x="2" y="2" width="5" height="5" fill="white"/><rect x="3" y="3" width="3" height="3" fill="black"/>
+            <rect x="29" y="1" width="7" height="7" fill="black"/><rect x="30" y="2" width="5" height="5" fill="white"/><rect x="31" y="3" width="3" height="3" fill="black"/>
+            <rect x="1" y="29" width="7" height="7" fill="black"/><rect x="2" y="30" width="5" height="5" fill="white"/><rect x="3" y="31" width="3" height="3" fill="black"/>
+            <rect x="9" y="1" width="1" height="1" fill="black"/><rect x="11" y="1" width="2" height="1" fill="black"/><rect x="14" y="1" width="1" height="1" fill="black"/><rect x="16" y="1" width="3" height="1" fill="black"/><rect x="20" y="1" width="1" height="1" fill="black"/><rect x="22" y="1" width="2" height="1" fill="black"/><rect x="9" y="3" width="2" height="1" fill="black"/><rect x="13" y="3" width="1" height="1" fill="black"/><rect x="15" y="3" width="2" height="1" fill="black"/><rect x="19" y="3" width="3" height="1" fill="black"/><rect x="24" y="3" width="1" height="1" fill="black"/><rect x="9" y="5" width="1" height="1" fill="black"/><rect x="12" y="5" width="3" height="1" fill="black"/><rect x="17" y="5" width="1" height="1" fill="black"/><rect x="20" y="5" width="2" height="1" fill="black"/><rect x="23" y="5" width="2" height="1" fill="black"/><rect x="9" y="7" width="3" height="1" fill="black"/><rect x="14" y="7" width="2" height="1" fill="black"/><rect x="18" y="7" width="1" height="1" fill="black"/><rect x="21" y="7" width="3" height="1" fill="black"/><rect x="1" y="9" width="1" height="1" fill="black"/><rect x="3" y="9" width="2" height="1" fill="black"/><rect x="7" y="9" width="1" height="1" fill="black"/><rect x="9" y="9" width="2" height="1" fill="black"/><rect x="13" y="9" width="1" height="1" fill="black"/><rect x="16" y="9" width="3" height="1" fill="black"/><rect x="21" y="9" width="1" height="1" fill="black"/><rect x="24" y="9" width="2" height="1" fill="black"/><rect x="29" y="9" width="2" height="1" fill="black"/><rect x="33" y="9" width="1" height="1" fill="black"/><rect x="35" y="9" width="1" height="1" fill="black"/><rect x="1" y="11" width="2" height="1" fill="black"/><rect x="5" y="11" width="1" height="1" fill="black"/><rect x="8" y="11" width="2" height="1" fill="black"/><rect x="12" y="11" width="2" height="1" fill="black"/><rect x="16" y="11" width="1" height="1" fill="black"/><rect x="19" y="11" width="2" height="1" fill="black"/><rect x="23" y="11" width="1" height="1" fill="black"/><rect x="26" y="11" width="2" height="1" fill="black"/><rect x="30" y="11" width="1" height="1" fill="black"/><rect x="34" y="11" width="2" height="1" fill="black"/><rect x="2" y="13" width="1" height="1" fill="black"/><rect x="5" y="13" width="2" height="1" fill="black"/><rect x="9" y="13" width="1" height="1" fill="black"/><rect x="12" y="13" width="3" height="1" fill="black"/><rect x="17" y="13" width="2" height="1" fill="black"/><rect x="21" y="13" width="1" height="1" fill="black"/><rect x="25" y="13" width="2" height="1" fill="black"/><rect x="29" y="13" width="1" height="1" fill="black"/><rect x="32" y="13" width="3" height="1" fill="black"/><rect x="1" y="15" width="3" height="1" fill="black"/><rect x="6" y="15" width="1" height="1" fill="black"/><rect x="9" y="15" width="2" height="1" fill="black"/><rect x="13" y="15" width="1" height="1" fill="black"/><rect x="16" y="15" width="3" height="1" fill="black"/><rect x="20" y="15" width="2" height="1" fill="black"/><rect x="24" y="15" width="1" height="1" fill="black"/><rect x="27" y="15" width="2" height="1" fill="black"/><rect x="31" y="15" width="1" height="1" fill="black"/><rect x="34" y="15" width="2" height="1" fill="black"/><rect x="2" y="17" width="2" height="1" fill="black"/><rect x="6" y="17" width="2" height="1" fill="black"/><rect x="10" y="17" width="1" height="1" fill="black"/><rect x="13" y="17" width="2" height="1" fill="black"/><rect x="17" y="17" width="1" height="1" fill="black"/><rect x="20" y="17" width="1" height="1" fill="black"/><rect x="23" y="17" width="2" height="1" fill="black"/><rect x="27" y="17" width="1" height="1" fill="black"/><rect x="30" y="17" width="2" height="1" fill="black"/><rect x="34" y="17" width="1" height="1" fill="black"/><rect x="1" y="19" width="1" height="1" fill="black"/><rect x="4" y="19" width="2" height="1" fill="black"/><rect x="8" y="19" width="1" height="1" fill="black"/><rect x="11" y="19" width="3" height="1" fill="black"/><rect x="16" y="19" width="2" height="1" fill="black"/><rect x="20" y="19" width="1" height="1" fill="black"/><rect x="24" y="19" width="2" height="1" fill="black"/><rect x="28" y="19" width="1" height="1" fill="black"/><rect x="31" y="19" width="3" height="1" fill="black"/><rect x="35" y="19" width="1" height="1" fill="black"/><rect x="2" y="21" width="3" height="1" fill="black"/><rect x="7" y="21" width="1" height="1" fill="black"/><rect x="10" y="21" width="2" height="1" fill="black"/><rect x="14" y="21" width="1" height="1" fill="black"/><rect x="17" y="21" width="3" height="1" fill="black"/><rect x="22" y="21" width="1" height="1" fill="black"/><rect x="25" y="21" width="2" height="1" fill="black"/><rect x="29" y="21" width="1" height="1" fill="black"/><rect x="33" y="21" width="2" height="1" fill="black"/><rect x="1" y="23" width="2" height="1" fill="black"/><rect x="5" y="23" width="1" height="1" fill="black"/><rect x="8" y="23" width="3" height="1" fill="black"/><rect x="13" y="23" width="2" height="1" fill="black"/><rect x="17" y="23" width="1" height="1" fill="black"/><rect x="20" y="23" width="3" height="1" fill="black"/><rect x="25" y="23" width="1" height="1" fill="black"/><rect x="28" y="23" width="2" height="1" fill="black"/><rect x="32" y="23" width="3" height="1" fill="black"/><rect x="9" y="25" width="1" height="1" fill="black"/><rect x="12" y="25" width="2" height="1" fill="black"/><rect x="16" y="25" width="1" height="1" fill="black"/><rect x="19" y="25" width="3" height="1" fill="black"/><rect x="24" y="25" width="1" height="1" fill="black"/><rect x="27" y="25" width="2" height="1" fill="black"/><rect x="31" y="25" width="1" height="1" fill="black"/><rect x="34" y="25" width="2" height="1" fill="black"/><rect x="9" y="27" width="2" height="1" fill="black"/><rect x="13" y="27" width="1" height="1" fill="black"/><rect x="16" y="27" width="2" height="1" fill="black"/><rect x="20" y="27" width="1" height="1" fill="black"/><rect x="23" y="27" width="2" height="1" fill="black"/><rect x="27" y="27" width="1" height="1" fill="black"/><rect x="30" y="27" width="3" height="1" fill="black"/><rect x="9" y="29" width="1" height="1" fill="black"/><rect x="12" y="29" width="3" height="1" fill="black"/><rect x="17" y="29" width="1" height="1" fill="black"/><rect x="20" y="29" width="2" height="1" fill="black"/><rect x="24" y="29" width="1" height="1" fill="black"/><rect x="29" y="29" width="2" height="1" fill="black"/><rect x="33" y="29" width="3" height="1" fill="black"/><rect x="9" y="31" width="2" height="1" fill="black"/><rect x="13" y="31" width="2" height="1" fill="black"/><rect x="17" y="31" width="1" height="1" fill="black"/><rect x="21" y="31" width="2" height="1" fill="black"/><rect x="25" y="31" width="1" height="1" fill="black"/><rect x="28" y="31" width="2" height="1" fill="black"/><rect x="32" y="31" width="1" height="1" fill="black"/><rect x="35" y="31" width="1" height="1" fill="black"/><rect x="9" y="33" width="1" height="1" fill="black"/><rect x="12" y="33" width="1" height="1" fill="black"/><rect x="15" y="33" width="2" height="1" fill="black"/><rect x="19" y="33" width="1" height="1" fill="black"/><rect x="22" y="33" width="2" height="1" fill="black"/><rect x="26" y="33" width="1" height="1" fill="black"/><rect x="29" y="33" width="2" height="1" fill="black"/><rect x="33" y="33" width="2" height="1" fill="black"/><rect x="9" y="35" width="2" height="1" fill="black"/><rect x="13" y="35" width="1" height="1" fill="black"/><rect x="16" y="35" width="3" height="1" fill="black"/><rect x="21" y="35" width="1" height="1" fill="black"/><rect x="24" y="35" width="2" height="1" fill="black"/><rect x="28" y="35" width="1" height="1" fill="black"/><rect x="31" y="35" width="2" height="1" fill="black"/><rect x="35" y="35" width="1" height="1" fill="black"/>
+          </svg>
+        </div>
+        <div class="pix-qr-info">
+          <div class="pix-copy-label">Código PIX copia e cola</div>
+          <div class="pix-copy-row">
+            <span class="pix-copy-code">00020126580014BR.GOV.BCB.PIX0136f8a9e6...</span>
+            <button class="pix-copy-btn" onclick="copyPix()" title="Copiar código">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="pix-expiry-label">Expira em</div>
+          <div class="pix-timer" id="pixTimer">09:52</div>
+        </div>
+      </div>
+
+      <div class="pix-how-card">
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8960c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="pix-how-title">Como pagar</div>
+          <div class="pix-how-steps">
+            1. Abra o app do seu banco ou carteira digital.<br/>
+            2. Escolha a opção pagar com PIX.<br/>
+            3. Escaneie o QR Code ou cole o código PIX acima.<br/>
+            4. Confirme o pagamento.
+          </div>
+        </div>
+      </div>
+
+      <div class="pix-waiting-card">
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8960c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div>
+          <div class="pix-waiting-title">Aguardando pagamento...</div>
+          <div class="pix-waiting-desc">Assim que o pagamento for confirmado, você será redirecionado para a confirmação da compra.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pix-bottom">
+      <button class="pix-bottom-back" onclick="goTo('confirm')">Voltar</button>
+      <div class="pix-total-block">
+        <span class="pix-total-label">Total a pagar</span>
+        <span class="pix-total-value" id="pixTotal">R$ 0,00</span>
+      </div>
+      <button class="pix-pay-btn" onclick="completePurchase()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Pagar Agora
+      </button>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="ticket-confirmed">
+    <style>
+      @keyframes scaleInCheck {
+        0% { transform: scale(0); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      @keyframes drawCheckPath {
+        0% { stroke-dashoffset: 50; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .email-panel { position:fixed; bottom:0; left:0; right:0; background:#1e1e1e; padding:24px; border-radius:24px 24px 0 0; transform:translateY(100%); transition:transform 0.3s ease; z-index:100; border-top:1px solid rgba(255,255,255,0.1); box-shadow:0 -10px 40px rgba(0,0,0,0.8); }
+      .email-panel.open { transform:translateY(0); }
+      .email-panel-header { display:flex; justify-content:space-between; align-items:center; color:#fff; font-weight:700; font-size:18px; margin-bottom:16px; }
+      .email-panel-close { background:none; border:none; color:rgba(255,255,255,0.5); font-size:20px; cursor:pointer; }
+    </style>
+
+    <div class="sbscreen-topbar" style="justify-content: center;">
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+    </div>
+
+    <div class="sbscreen-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top: 50px;">
+
+      <div style="margin-bottom: 24px;">
+        <div style="width: 80px; height: 80px; border-radius: 50%; background: #22c55e; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(34, 197, 94, 0.4); animation: scaleInCheck 0.5s ease-out forwards;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="animation: drawCheckPath 0.6s ease-out 0.3s forwards; stroke-dasharray: 50; stroke-dashoffset: 50;">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+
+      <h2 style="color: #fff; font-size: 28px; margin-bottom: 8px; font-weight: 800;">Pagamento Aprovado!</h2>
+      <p style="color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 32px;">Seus ingressos já estão garantidos e prontos para uso.</p>
+
+      <div class="sb-panel" style="width: 100%; max-width: 400px; padding: 0; overflow: hidden; text-align: left; margin-bottom: 24px;">
+        <div style="background: rgba(255,255,255,0.03); padding: 16px; border-bottom: 1px dashed rgba(255,255,255,0.1); display:flex; align-items:center; gap:16px;">
+          <div id="tconfPoster" style="width: 60px; height: 90px; border-radius: 6px; overflow: hidden; background:#111; box-shadow:0 4px 10px rgba(0,0,0,0.5);">
+          </div>
+          <div>
+            <div id="tconfTitle" style="color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 4px;">Filme</div>
+            <div style="color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 4px;">Sessão: <span id="tconfHorario" style="color:#fff;">--</span></div>
+            <div style="color: rgba(255,255,255,0.6); font-size: 13px;">Assentos: <span id="tconfSeats" style="color:#3b82f6; font-weight:600;">--</span></div>
+          </div>
+        </div>
+        <div style="padding: 16px; display: flex; justify-content: space-between; align-items: center; background:rgba(0,0,0,0.2);">
+          <div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom:2px;">Nº do Pedido</div>
+            <div style="color: #fff; font-size: 14px; font-weight: 600; font-family: monospace;" id="tconfOrder">#CBR-00000</div>
+          </div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CineBR-Ticket" alt="QR Code" style="width: 50px; height: 50px; border-radius: 4px; border: 2px solid white;"/>
+        </div>
+      </div>
+
+      <div style="display:flex; gap: 12px; width: 100%; max-width: 400px; margin-bottom: 32px;">
+        <button class="btn-outline" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; height:44px; font-size:13px;" onclick="downloadTicket()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </button>
+        <button class="btn-outline" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; height:44px; font-size:13px;" onclick="toggleEmailPanel()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Por E-mail
+        </button>
+      </div>
+
+      <button class="btn-primary" style="max-width: 400px;" onclick="goTo('home')">Voltar ao Início</button>
+
+    </div>
+
+    <div id="emailPanel" class="email-panel">
+      <div class="email-panel-header">
+        <div>Enviar Ingresso</div>
+        <button class="email-panel-close" onclick="toggleEmailPanel()">✕</button>
+      </div>
+      <div class="email-panel-body">
+        <input type="email" id="emailPanelInput" class="sb-input" placeholder="Digite seu e-mail para receber o ingresso..." />
+        <button class="btn-primary" style="margin-top:16px; height:44px;" onclick="sendTicketEmail()">Enviar Agora</button>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

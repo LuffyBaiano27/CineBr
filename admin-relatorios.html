@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Relatórios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="admin-dashboard">
+    <div class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button class="admin-hamburger" onclick="openAdminSidebar()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="admin-topbar-title">Relatórios</div>
+      </div>
+      <div class="admin-topbar-right">
+        <span class="admin-user-name">Administrador</span>
+        <div class="admin-avatar-btn" onclick="_prevScreen='admin-dashboard'; goTo('perfil')" title="Meu Perfil">A</div>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-overlay" id="adminSidebarOverlay" onclick="closeAdminSidebar()"></div>
+
+    <div class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-head">
+        <div class="admin-sidebar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+        <button class="admin-sidebar-close" onclick="closeAdminSidebar()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="admin-sidebar-profile" onclick="closeAdminSidebar(); _prevScreen='admin-dashboard'; goTo('perfil');">
+        <div class="admin-sidebar-avatar">A</div>
+        <div class="admin-sidebar-profile-info">
+          <div class="admin-sidebar-profile-name">Administrador</div>
+          <div class="admin-sidebar-profile-role">Acesso total ao sistema</div>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="admin-nav-item" id="navDashboard" onclick="goTo('admin')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Dashboard
+        </div>
+        <div class="admin-nav-item" id="navFilmes" onclick="goTo('admin-filmes')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5"/></svg>
+          Filmes
+        </div>
+        <div class="admin-nav-item" id="navSalas" onclick="goTo('admin-salas')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Salas
+        </div>
+        <div class="admin-nav-item" id="navSessoes" onclick="goTo('admin-sessoes')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Sessões
+        </div>
+        <div class="admin-nav-item active" id="navRelatorios" onclick="goTo('admin-relatorios')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Relatórios
+        </div>
+      </nav>
+
+      <div class="admin-sidebar-bottom">
+        <div class="admin-nav-sair" onclick="goTo('login')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          ↔ Sair
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-body">
+        
+        <div class="admin-panel-section active" id="panel-relatorios">
+          <div class="adm-page-header">
+            <div>
+              <div class="adm-page-title">Relatórios</div>
+              <div class="adm-page-sub">Desempenho de vendas por filme</div>
+            </div>
+            <button class="adm-add-btn" onclick="document.getElementById('panel-relatorios').classList.remove('active'); document.getElementById('panel-graficos').classList.add('active'); refreshGraficos();">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Gerar Relatório
+            </button>
+          </div>
+
+          <div class="adm-filter-row">
+            <select class="adm-filter-sel" style="flex:2;"><option>Vendas por Filme</option><option>Vendas por Sala</option><option>Receita Total</option></select>
+            <select class="adm-filter-sel" style="flex:1.5;"><option>Últimos 30 Dias</option><option>Esta Semana</option><option>Este Mês</option></select>
+          </div>
+
+          <div class="adm-rel-summary" id="relSummary">
+            <div class="adm-rel-sum-item">
+              <div class="adm-rel-sum-label">Total Ingressos</div>
+              <div class="adm-rel-sum-value" id="relTotalTickets">0</div>
+            </div>
+            <div class="adm-rel-sum-item">
+              <div class="adm-rel-sum-label">Receita Total</div>
+              <div class="adm-rel-sum-value red" id="relatorioTotal">R$ 0,00</div>
+            </div>
+            <div class="adm-rel-sum-item">
+              <div class="adm-rel-sum-label">Ticket Médio</div>
+              <div class="adm-rel-sum-value gold" id="relTicketMedio">R$ 0,00</div>
+            </div>
+            <div class="adm-rel-sum-item">
+              <div class="adm-rel-sum-label">Filmes em Cartaz</div>
+              <div class="adm-rel-sum-value">6</div>
+            </div>
+          </div>
+
+          <div class="adm-section-label">Ranking por ingressos vendidos</div>
+
+          <div class="adm-card">
+            <div class="adm-card-header">
+              <span class="adm-card-header-title">Desempenho por Filme</span>
+              <span class="adm-card-header-badge" style="color:#4ade80;">↑ Atualizado ao vivo</span>
+            </div>
+            <div id="relatorioTableBody"></div>
+          </div>
+        </div>
+
+        <div class="admin-panel-section" id="panel-graficos">
+          <div class="adm-page-header">
+            <div>
+              <div class="adm-page-title">Gráficos</div>
+              <div class="adm-page-sub">Visualização de dados em tempo real</div>
+            </div>
+            <button class="adm-add-btn secondary" onclick="document.getElementById('panel-graficos').classList.remove('active'); document.getElementById('panel-relatorios').classList.add('active');">
+              ← Voltar
+            </button>
+          </div>
+
+          <div class="adm-charts-row">
+            <div class="adm-chart-box">
+              <div class="adm-chart-box-title">Ingressos Vendidos</div>
+              <svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" id="barChartSvg"></svg>
+            </div>
+            <div class="adm-chart-box">
+              <div class="adm-chart-box-title">Receita por Filme</div>
+              <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" id="pieChartSvg"></svg>
+            </div>
+          </div>
+
+          <div class="adm-grand-total">
+            <div class="adm-grand-label">Receita Total Acumulada</div>
+            <div class="adm-grand-value" id="graficosTotal">R$ 0,00</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+<script>setTimeout(refreshRelatorios, 100);</script>
+</body>
+</html>

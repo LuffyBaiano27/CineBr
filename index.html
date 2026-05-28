@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="splash">
+    <div class="splash-logo">
+      <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+    </div>
+    <div class="spinner">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="login">
+    <div class="login-top">
+      <div class="login-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="login-title">Bem Vindo de Volta!</div>
+    </div>
+
+    <div class="login-form">
+      <div class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/>
+        </svg>
+        <input type="email" placeholder="Email Adress" autocomplete="email"/>
+      </div>
+      <div class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <input type="password" id="pwdLogin" placeholder="Password" autocomplete="current-password"/>
+        <button class="eye-btn" onclick="toggleEye('pwdLogin','eyeLogin')" aria-label="Ver senha">
+          <svg id="eyeLogin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+      <a href="#" class="forgot-link">Esqueceu a Senha?</a>
+      <div class="login-role-row">
+        <button class="btn-role btn-role-cliente" onclick="goTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Cliente
+        </button>
+        <button class="btn-role btn-role-admin" onclick="goTo('admin')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          Administrador
+        </button>
+      </div>
+      <div class="divider-text">Não possui conta?</div>
+      <button class="btn-outline" onclick="goTo('cadastro')">Cadastra-se</button>
+    </div>
+
+    <div class="login-footer">
+      <a href="#">Contato</a><a href="#">Sobre</a><a href="#">Termos</a>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="cadastro">
+    <div class="cadastro-inner">
+      <div class="cadastro-top">
+        <div class="login-logo" style="font-size:32px;margin-bottom:16px;">
+          <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+        </div>
+        <div class="cadastro-title">Cadastre-Se!</div>
+      </div>
+
+      <div class="cadastro-form">
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <input type="text" placeholder="Seu Nome" autocomplete="name"/>
+        </div>
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/>
+          </svg>
+          <input type="email" placeholder="Endereço de e-mail" autocomplete="email"/>
+        </div>
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" id="pwdCad" placeholder="Senha" autocomplete="new-password"/>
+          <button class="eye-btn" onclick="toggleEye('pwdCad','eyeCad')" aria-label="Ver senha">
+            <svg id="eyeCad" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" id="pwdConf" placeholder="Confirmar Senha" autocomplete="new-password"/>
+          <button class="eye-btn" onclick="toggleEye('pwdConf','eyeConf')" aria-label="Ver senha">
+            <svg id="eyeConf" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div>
+          <div class="tipo-label">Tipo de Conta</div>
+          <div class="tipo-conta">
+            <div class="tipo-btn cliente active" onclick="selectTipo(this)">
+              <div class="tipo-icon">👤</div>Cliente
+            </div>
+            <div class="tipo-btn admin" onclick="selectTipo(this)">
+              <div class="tipo-icon">⚙️</div>Administrador
+            </div>
+          </div>
+        </div>
+
+        <div class="termos-row">
+          <div class="custom-checkbox" id="termosCheck" onclick="toggleCheck()">
+            <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="termos-text">Concordo com os <a href="#">Termos de Uso</a></span>
+        </div>
+
+        <button class="btn-primary" style="margin-top:4px;" onclick="goTo('login')">Cadastrar</button>
+
+        <div class="ja-tem-conta">
+          Já tem uma conta? <a onclick="goTo('login')">Fazer login</a>
+        </div>
+      </div>
+
+      <div class="cadastro-footer">
+        <a href="#">Contato</a><a href="#">Sobre</a><a href="#">Termos</a>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

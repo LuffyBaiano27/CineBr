@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="perfil">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="goToFromPerfil()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+
+    <div class="sbscreen-body">
+      <div class="sbscreen-title">Configurações do Perfil</div>
+      <div class="sbscreen-subtitle">Atualize suas informações pessoais.</div>
+      <div class="sb-two-col">
+        <div class="sb-panel">
+          <div class="sb-panel-title">Foto do perfil</div>
+          <div class="perfil-avatar-wrap">
+            <div class="perfil-avatar-circle">J</div>
+            <button class="perfil-alter-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Alterar foto
+            </button>
+          </div>
+          <div class="sb-field">
+            <label>Nome completo</label>
+            <input class="sb-input" type="text" value="João Silva"/>
+          </div>
+          <div class="sb-field">
+            <label>E-mail</label>
+            <input class="sb-input" type="email" value="joao.silva@email.com"/>
+          </div>
+          <div class="sb-field">
+            <label>Telefone</label>
+            <input class="sb-input" type="tel" value="(11) 98765-4321"/>
+          </div>
+        </div>
+
+        <div class="sb-panel">
+          <div class="sb-panel-title">Senha</div>
+          <div class="sb-field">
+            <label>Senha atual</label>
+            <input class="sb-input" type="password" placeholder="Digite sua senha atual"/>
+          </div>
+          <div class="sb-field">
+            <label>Nova senha</label>
+            <input class="sb-input" type="password" placeholder="Digite sua nova senha"/>
+          </div>
+          <div class="sb-field">
+            <label>Confirmar nova senha</label>
+            <input class="sb-input" type="password" placeholder="Confirme sua nova senha"/>
+          </div>
+          <button class="btn-primary" style="height:44px;font-size:13px;margin-top:8px;" onclick="showToast('✓ Alterações salvas!','#22c55e')">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Início</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="home">
+    <div class="home-topbar">
+      <div class="home-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="topbar-right">
+        <button class="home-cart-btn" onclick="openCart()" style="cursor: pointer;" aria-label="Carrinho">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="home-cart-total" id="homeCartTotal">R$ 0,00</span>
+          <span class="home-cart-badge" id="homeCartBadge">0</span>
+        </button>
+        <div class="user-greeting" onclick="goTo('perfil')" style="cursor:pointer;" title="Meu Perfil">
+          <div class="user-avatar">O</div>
+          <span class="user-name">Olá, Usuário!</span>
+        </div>
+        <button class="hamburger-btn" onclick="openSidebar()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="home-search">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" placeholder="Buscar filmes..."/>
+      </div>
+    </div>
+
+    <div class="home-content">
+      <div class="section-header">Em Cartaz</div>
+
+      <div class="movie-grid">
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://ingresso-a.akamaihd.net/prd/img/movie/o-diabo-veste-prada-2/4e042f1b-0072-4560-96f9-409c59dd0da2.webp" alt="O Diabo Veste Prada 2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">O Diabo Veste Prada 2</div>
+          </div>
+          <div class="movie-card-name">O Diabo Veste Prada 2</div>
+        </div>
+
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://br.web.img2.acsta.net/img/e9/f1/e9f1efa99c6af0bbe48871b6d0a299f9.jpg" alt="Michael" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">Michael</div>
+          </div>
+          <div class="movie-card-name">Michael</div>
+        </div>
+
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://cinemococa.com.br/wp-content/uploads/2026/04/efe2f2a9-eea9-4c23-92b7-667180c7703f-1.webp" alt="Star Wars: O Mandaloriano e Grogu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">Star Wars: O Mandaloriano e Grogu</div>
+          </div>
+          <div class="movie-card-name">Star Wars: O Mandaloriano e Grogu</div>
+        </div>
+
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BMzUyNDNhNmUtZWZmYy00OGY4LWEwMjgtZGJlZTA3ZTY2MTY0XkEyXkFqcGc@._V1_.jpg" alt="Todo Mundo em Pânico 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">Todo Mundo em Pânico 2026</div>
+          </div>
+          <div class="movie-card-name">Todo Mundo em Pânico 2026</div>
+        </div>
+
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://ingresso-a.akamaihd.net/b2b/production/uploads/articles-content/d336e250-c7b3-4860-a730-a5bd6160290a.jpg" alt="Vingadores: Doutor Destino" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">Vingadores: Doutor Destino</div>
+          </div>
+          <div class="movie-card-name">Vingadores: Doutor Destino</div>
+        </div>
+
+        <div class="movie-card-wrap" onclick="openMovieDetail(this)">
+          <div class="movie-card">
+            <img src="https://ingresso-a.akamaihd.net/prd/img/movie/duna-parte-3/32ac8c1b-16cb-498f-9fb7-6cc148f07374.webp" alt="Duna: Parte 3" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"/>
+            <div class="movie-card-overlay"></div>
+            <div class="movie-card-badge">Duna: Parte 3</div>
+          </div>
+          <div class="movie-card-name">Duna: Parte 3</div>
+        </div>
+      </div>
+
+      <div class="home-banner" style="height:140px;background:none;">
+        <img src="" alt="Supergirl" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:14px;"/>
+        <div style="position:absolute;inset:0;border-radius:14px;background:linear-gradient(90deg,rgba(0,0,0,0.55) 0%,transparent 60%);"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-avatar" onclick="closeSidebar(); goTo('perfil');" style="cursor:pointer;" title="Meu Perfil">O</div>
+      <button class="sidebar-close" onclick="closeSidebar()" aria-label="Fechar menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-item" onclick="goTo('suporte')" style="cursor:pointer;">
+        <div class="sidebar-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <span class="sidebar-item-label">Suporte</span>
+      </a>
+
+      <a class="sidebar-item" onclick="goTo('historico')" style="cursor:pointer;">
+        <div class="sidebar-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="sidebar-item-label">Histórico de Compras</span>
+      </a>
+
+      <a class="sidebar-item" onclick="goTo('avaliacoes')" style="cursor:pointer;">
+        <div class="sidebar-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <span class="sidebar-item-label">Avaliações</span>
+      </a>
+
+      <a class="sidebar-item" onclick="goTo('configuracoes')" style="cursor:pointer;">
+        <div class="sidebar-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="sidebar-item-label">Configurações do App</span>
+      </a>
+
+      <div class="sidebar-spacer"></div>
+
+      <a class="sidebar-item danger" onclick="goTo('login')">
+        <div class="sidebar-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(227,80,80,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <span class="sidebar-item-label">Sair</span>
+      </a>
+    </nav>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Configurações</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="configuracoes">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="goTo('home')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+    <div class="sbscreen-body">
+      <div class="sbscreen-title">Sistema</div>
+      <div class="sbscreen-subtitle">Informações sobre o sistema e preferências gerais.</div>
+      <div class="sb-two-col">
+        <div class="sb-panel">
+          <div class="sb-panel-title">Sobre o Sistema</div>
+          <div class="config-app-center">
+            <div><span class="logo-cine" style="font-size:28px;">CINE</span><span class="logo-br" style="font-size:28px;">BR</span></div>
+            <div class="config-app-version">Versão 1.0.0</div>
+            <div class="config-app-desc">Sistema de venda de ingressos online.<br/>Desenvolvido para oferecer a melhor experiência<br/>de compra de ingressos de cinema.</div>
+            
+            <!-- EASTER EGG LUFFYBAIANO27 -->
+            <div style="color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #2de31c, 0 0 20px #3d1ce3, 0 0 40px #000000; font-weight: 800; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; margin-top: 15px; text-transform: uppercase;">Protótipo feito por: LuffyBaiano27</div>
+            
+            <div class="config-copyright" style="margin-top: 15px;">© 2026 CineBR. Todos os direitos reservados.</div>
+          </div>
+        </div>
+        <div class="sb-panel">
+          <div class="sb-panel-title">Preferências</div>
+          <div class="sb-field">
+            <label>Tema</label>
+            <div class="sb-select-wrap">
+              <select class="sb-select"><option selected>Escuro</option><option>Claro</option><option>Sistema</option></select>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="sb-field">
+            <label>Idioma</label>
+            <div class="sb-select-wrap">
+              <select class="sb-select"><option selected>Português</option><option>English</option><option>Español</option></select>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="config-row">
+            <div><div class="config-row-label">Notificações</div><div class="config-row-sub">Receber notificações sobre novidades e promoções.</div></div>
+            <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+          </div>
+          <div class="config-row">
+            <div><div class="config-row-label">E-mails promocionais</div><div class="config-row-sub">Receber e-mails com promoções e ofertas exclusivas.</div></div>
+            <button class="toggle-switch" onclick="this.classList.toggle('on')"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

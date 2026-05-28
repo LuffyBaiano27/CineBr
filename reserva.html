@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Reserva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="movie-detail">
+    <div class="detail-topbar">
+      <button class="detail-back-btn" onclick="goTo('home')" aria-label="Voltar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="detail-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+    </div>
+
+    <div class="detail-content">
+      <div class="detail-hero">
+        <div class="detail-poster" id="detail-poster-svg"></div>
+        <div class="detail-info">
+          <div class="detail-title" id="detail-title">Aventura Espacial</div>
+          <div class="detail-meta">
+            <div class="detail-rating">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              12
+            </div>
+            <div class="detail-duration">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              2h 10min
+            </div>
+          </div>
+          <div class="detail-desc" id="detail-desc">Uma viagem épica pelo universo em busca de novos mundos e civilizações.</div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">Escolha a Data</div>
+        <div class="date-pills">
+          <div class="date-pill active" onclick="selectPill(this, 'date')">Hoje</div>
+          <div class="date-pill" onclick="selectPill(this, 'date')">Amanhã</div>
+          <div class="date-pill" onclick="selectPill(this, 'date')">Sexta</div>
+        </div>
+      </div>
+
+      <div class="detail-section" style="padding-top:18px;">
+        <div class="detail-section-title">Horários</div>
+        <div class="time-pills">
+          <div class="time-pill active" onclick="selectPill(this, 'time')">15:00</div>
+          <div class="time-pill" onclick="selectPill(this, 'time')">17:30</div>
+          <div class="time-pill" onclick="selectPill(this, 'time')">20:00</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="detail-cta">
+      <button class="btn-primary" onclick="goTo('seats')">Escolher Assentos</button>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="seats">
+    <div class="seats-topbar">
+      <button class="seats-back-btn" onclick="goTo('movie-detail')" aria-label="Voltar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="seats-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+    </div>
+
+    <div class="seats-content">
+      <div class="cinema-screen-wrap">
+        <div class="cinema-screen-bar"></div>
+        <div class="cinema-screen-label">Tela de Cinema</div>
+      </div>
+
+      <div class="seat-map" id="seatMap"></div>
+
+      <div class="seat-legend">
+        <div class="legend-item">
+          <div class="legend-dot available"></div>
+          Disponível
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot selected"></div>
+          Selecionado
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot occupied"></div>
+          Indisponível
+        </div>
+      </div>
+
+      <div class="seats-divider"></div>
+
+      <div class="seats-info-bar">
+        <span class="seats-info-label">Assentos:</span>
+        <span class="seats-info-value" id="selectedSeatsLabel">—</span>
+      </div>
+    </div>
+    
+    <div class="seats-cta">
+      <button class="btn-secondary" onclick="goTo('movie-detail')">Voltar</button>
+      <button class="btn-primary" onclick="goTo('tickets')">Continuar</button>
+    </div>
+  </div>
+
+  <div class="screen hidden" id="tickets">
+    <div class="tickets-topbar">
+      <button class="tickets-back-link" onclick="goTo('seats')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Voltar
+      </button>
+      <div class="tickets-topbar-logo">
+        <span class="logo-cine">Cine</span><span class="logo-br">BR</span>
+      </div>
+      <div class="tickets-cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="tickets-cart-value" id="cartValue">R$ 0,00</span>
+      </div>
+    </div>
+
+    <div class="tickets-body">
+      <div class="tickets-page-header">
+        <div class="tickets-page-title">Escolha o tipo de ingresso</div>
+        <div class="tickets-page-sub">Selecione o tipo de ingresso e a quantidade desejada para cada categoria.</div>
+      </div>
+
+      <div class="tickets-col-headers">
+        <span></span>
+        <span>Quantidade</span>
+        <span>Preço unitário</span>
+        <span>Subtotal</span>
+      </div>
+
+      <div class="ticket-row" data-price="40">
+        <div class="ticket-info">
+          <div class="ticket-icon" style="background:rgba(227,28,28,0.15);">🎟️</div>
+          <div class="ticket-text">
+            <div class="ticket-name">Inteira</div>
+            <div class="ticket-desc">Ingresso inteiro<br/>para o público geral.</div>
+          </div>
+        </div>
+        <div class="ticket-qty">
+          <button class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-value">0</span>
+          <button class="qty-btn plus"  onclick="changeQty(this,+1)">+</button>
+        </div>
+        <div class="ticket-unit-price">R$ 40,00</div>
+        <div class="ticket-subtotal zero">R$ 0,00</div>
+      </div>
+
+      <div class="ticket-row" data-price="20">
+        <div class="ticket-info">
+          <div class="ticket-icon" style="background:rgba(255,180,0,0.15);">⭐</div>
+          <div class="ticket-text">
+            <div class="ticket-name">Meia-entrada</div>
+            <div class="ticket-desc">Estudantes, professores, idosos<br/>acima de 60 anos e PCD.</div>
+          </div>
+        </div>
+        <div class="ticket-qty">
+          <button class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-value">0</span>
+          <button class="qty-btn plus"  onclick="changeQty(this,+1)">+</button>
+        </div>
+        <div class="ticket-unit-price">R$ 20,00</div>
+        <div class="ticket-subtotal zero">R$ 0,00</div>
+      </div>
+
+      <div class="ticket-row" data-price="20">
+        <div class="ticket-info">
+          <div class="ticket-icon" style="background:rgba(120,80,200,0.15);">🎓</div>
+          <div class="ticket-text">
+            <div class="ticket-name">Meia Estudante</div>
+            <div class="ticket-desc">Válido mediante apresentação<br/>da carteirinha estudantil.</div>
+          </div>
+        </div>
+        <div class="ticket-qty">
+          <button class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-value">0</span>
+          <button class="qty-btn plus"  onclick="changeQty(this,+1)">+</button>
+        </div>
+        <div class="ticket-unit-price">R$ 20,00</div>
+        <div class="ticket-subtotal zero">R$ 0,00</div>
+      </div>
+
+      <div class="ticket-row" data-price="20">
+        <div class="ticket-info">
+          <div class="ticket-icon" style="background:rgba(34,197,94,0.15);">🧓</div>
+          <div class="ticket-text">
+            <div class="ticket-name">Idoso</div>
+            <div class="ticket-desc">Para pessoas com 60 anos<br/>ou mais.</div>
+          </div>
+        </div>
+        <div class="ticket-qty">
+          <button class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-value">0</span>
+          <button class="qty-btn plus"  onclick="changeQty(this,+1)">+</button>
+        </div>
+        <div class="ticket-unit-price">R$ 20,00</div>
+        <div class="ticket-subtotal zero">R$ 0,00</div>
+      </div>
+
+      <div class="ticket-row" data-price="20">
+        <div class="ticket-info">
+          <div class="ticket-icon" style="background:rgba(59,130,246,0.15);">♿</div>
+          <div class="ticket-text">
+            <div class="ticket-name">PCD</div>
+            <div class="ticket-desc">Pessoa com deficiência<br/>e acompanhante.</div>
+          </div>
+        </div>
+        <div class="ticket-qty">
+          <button class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-value">0</span>
+          <button class="qty-btn plus"  onclick="changeQty(this,+1)">+</button>
+        </div>
+        <div class="ticket-unit-price">R$ 20,00</div>
+        <div class="ticket-subtotal zero">R$ 0,00</div>
+      </div>
+
+      <div class="tickets-promo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5c518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <div class="tickets-promo-text">
+          <strong>Promoção:</strong> Comprando 2 ingressos inteiros, ganhe 1 pipoca pequena!
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="tickets-bottom">
+      <div class="tickets-bottom-inner">
+        <button class="btn-voltar" onclick="goTo('seats')">Voltar</button>
+        <div class="tickets-total-block">
+          <div class="tickets-total-label">Total</div>
+          <div class="tickets-total-value" id="ticketTotal">R$ 0,00</div>
+        </div>
+        <button class="btn-continuar" onclick="finalizarCompra()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

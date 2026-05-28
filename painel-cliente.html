@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Suporte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="suporte">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="goTo('home')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+    <div class="sbscreen-body">
+      <div class="sbscreen-title">Suporte</div>
+      <div class="sbscreen-subtitle">Precisa de ajuda? Fale com a gente.</div>
+      <div class="sb-two-col">
+        <div class="sb-panel">
+          <div class="sb-panel-title">Abrir chamado</div>
+          <div class="sb-field">
+            <label>Assunto</label>
+            <div class="sb-select-wrap">
+              <select class="sb-select">
+                <option value="">Selecione um assunto</option>
+                <option>Problema com pagamento</option>
+                <option>Ingresso não recebido</option>
+                <option>Alteração de sessão</option>
+                <option>Dúvida sobre ingresso</option>
+                <option>Outro</option>
+              </select>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="sb-field">
+            <label>Mensagem</label>
+            <textarea class="sb-textarea" placeholder="Descreva seu problema ou dúvida..."></textarea>
+          </div>
+          <div class="sb-field">
+            <label>Anexar arquivo (opcional)</label>
+            <div class="sb-file-row">
+              <label class="sb-file-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Selecionar arquivo
+                <input type="file" style="display:none;" onchange="this.closest('.sb-file-row').querySelector('.sb-file-name').textContent=this.files[0]?.name||'Nenhum arquivo escolhido'"/>
+              </label>
+              <span class="sb-file-name">Nenhum arquivo escolhido</span>
+            </div>
+          </div>
+          <button class="btn-primary" style="height:44px;font-size:13px;margin-top:4px;" onclick="showToast('✓ Chamado enviado com sucesso!','#22c55e')">Enviar Chamado</button>
+        </div>
+        <div class="sb-panel">
+          <div class="sb-panel-title">Meus chamados</div>
+          <div class="chamado-item">
+            <div class="chamado-info">
+              <div class="chamado-title">Pagamento não confirmado</div>
+              <div class="chamado-date">Criado em 25/05/2024 às 14:32</div>
+            </div>
+            <span class="status-badge status-aberto">Aberto</span>
+          </div>
+          <div class="chamado-item">
+            <div class="chamado-info">
+              <div class="chamado-title">Dúvida sobre ingresso</div>
+              <div class="chamado-date">Criado em 22/05/2024 às 10:15</div>
+            </div>
+            <span class="status-badge status-andamento">Em andamento</span>
+          </div>
+          <div class="chamado-item">
+            <div class="chamado-info">
+              <div class="chamado-title">Alteração de data da sessão</div>
+              <div class="chamado-date">Criado em 15/05/2024 às 09:47</div>
+            </div>
+            <span class="status-badge status-resolvido">Resolvido</span>
+          </div>
+          <button class="sb-ver-chamados">Ver todos os chamados</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

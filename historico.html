@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Histórico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen sbscreen" id="historico">
+    <div class="sbscreen-topbar">
+      <button class="sbscreen-back" onclick="goTo('home')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </button>
+      <div class="sbscreen-topbar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+      <div style="width:56px;"></div>
+    </div>
+    <div class="sbscreen-body">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
+        <div>
+          <div class="sbscreen-title">Histórico de Compras</div>
+          <div class="sbscreen-subtitle" style="margin-bottom:0;">Confira todas as suas compras realizadas.</div>
+        </div>
+        <div class="sb-select-wrap" style="width:140px;margin-top:6px;">
+          <select class="hist-filter-select">
+            <option>Todos os Status</option>
+            <option>Concluído</option>
+            <option>Pendente</option>
+          </select>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="right:8px;"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="sb-panel" style="padding:0;overflow:hidden;margin-top:14px;">
+        <table class="hist-table">
+          <thead><tr>
+            <th style="padding-left:14px;">Filme / Sessão</th>
+            <th>Data</th><th>Assentos</th><th>Valor</th><th>Status</th>
+            <th style="padding-right:14px;">Ações</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td style="padding-left:14px;"><div class="hist-movie-cell"><div class="hist-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ps1" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#1565c0"/><stop offset="100%" stop-color="#020510"/></radialGradient></defs><rect width="120" height="180" fill="url(#ps1)"/><circle cx="85" cy="38" r="18" fill="#1e88e5" opacity="0.6"/><polygon points="60,55 54,95 66,95" fill="#e0e0e0"/></svg></div><div><div class="hist-movie-name">Vingadores: Doutor Destino</div><div class="hist-movie-meta">25/05/2024 · 17:30 · Sala 2</div></div></div></td>
+              <td>25/05/2024</td><td>B5, B6</td>
+              <td style="color:#fff;font-weight:600;">R$ 40,00</td>
+              <td><span class="status-concluido">Concluído</span></td>
+              <td style="padding-right:14px;"><button class="hist-ver-btn" onclick="showToast('Abrindo ingresso...','#3b82f6')">Ver ingresso</button></td>
+            </tr>
+            <tr>
+              <td style="padding-left:14px;"><div class="hist-movie-cell"><div class="hist-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ps2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#ff6b00"/><stop offset="100%" stop-color="#1a0505"/></radialGradient></defs><rect width="120" height="180" fill="url(#ps2)"/><circle cx="60" cy="72" r="18" fill="rgba(255,240,180,0.8)"/></svg></div><div><div class="hist-movie-name">Star Wars: O Mandaloriano e Grogu</div><div class="hist-movie-meta">18/05/2024 · 20:00 · Sala 1</div></div></div></td>
+              <td>18/05/2024</td><td>C3, C4</td>
+              <td style="color:#fff;font-weight:600;">R$ 40,00</td>
+              <td><span class="status-concluido">Concluído</span></td>
+              <td style="padding-right:14px;"><button class="hist-ver-btn" onclick="showToast('Abrindo ingresso...','#3b82f6')">Ver ingresso</button></td>
+            </tr>
+            <tr>
+              <td style="padding-left:14px;"><div class="hist-movie-cell"><div class="hist-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ps3" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#2e7d32"/><stop offset="100%" stop-color="#0a1a0a"/></radialGradient></defs><rect width="120" height="180" fill="url(#ps3)"/></svg></div><div><div class="hist-movie-name">Todo Mundo em Pânico 2026</div><div class="hist-movie-meta">10/05/2024 · 19:00 · Sala 3</div></div></div></td>
+              <td>10/05/2024</td><td>D7, D8</td>
+              <td style="color:#fff;font-weight:600;">R$ 40,00</td>
+              <td><span class="status-concluido">Concluído</span></td>
+              <td style="padding-right:14px;"><button class="hist-ver-btn" onclick="showToast('Abrindo ingresso...','#3b82f6')">Ver ingresso</button></td>
+            </tr>
+            <tr>
+              <td style="padding-left:14px;"><div class="hist-movie-cell"><div class="hist-poster"><svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ps4" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#6a0dad"/><stop offset="100%" stop-color="#050005"/></radialGradient></defs><rect width="120" height="180" fill="url(#ps4)"/></svg></div><div><div class="hist-movie-name">O Diabo Veste Prada 2</div><div class="hist-movie-meta">02/05/2024 · 21:30 · Sala 4</div></div></div></td>
+              <td>02/05/2024</td><td>A10, A11</td>
+              <td style="color:#fff;font-weight:600;">R$ 40,00</td>
+              <td><span class="status-concluido">Concluído</span></td>
+              <td style="padding-right:14px;"><button class="hist-ver-btn" onclick="showToast('Abrindo ingresso...','#3b82f6')">Ver ingresso</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hist-pagination">
+        <span class="hist-pag-info">Exibindo 1 a 4 de 4 compras</span>
+        <div class="hist-pag-btns">
+          <button class="hist-pag-btn">‹‹</button>
+          <button class="hist-pag-btn active">1</button>
+          <button class="hist-pag-btn">›</button>
+          <button class="hist-pag-btn">››</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

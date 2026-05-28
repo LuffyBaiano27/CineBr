@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBr - Salas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+ <div class="phone-shell">
+  <div class="star-bg"></div>
+
+  <div class="screen" id="admin-dashboard">
+    <div class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button class="admin-hamburger" onclick="openAdminSidebar()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="admin-topbar-title">Salas</div>
+      </div>
+      <div class="admin-topbar-right">
+        <span class="admin-user-name">Administrador</span>
+        <div class="admin-avatar-btn" onclick="_prevScreen='admin-dashboard'; goTo('perfil')" title="Meu Perfil">A</div>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-overlay" id="adminSidebarOverlay" onclick="closeAdminSidebar()"></div>
+
+    <div class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-head">
+        <div class="admin-sidebar-logo"><span class="logo-cine">Cine</span><span class="logo-br">BR</span></div>
+        <button class="admin-sidebar-close" onclick="closeAdminSidebar()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="admin-sidebar-profile" onclick="closeAdminSidebar(); _prevScreen='admin-dashboard'; goTo('perfil');">
+        <div class="admin-sidebar-avatar">A</div>
+        <div class="admin-sidebar-profile-info">
+          <div class="admin-sidebar-profile-name">Administrador</div>
+          <div class="admin-sidebar-profile-role">Acesso total ao sistema</div>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="admin-nav-item" id="navDashboard" onclick="goTo('admin')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Dashboard
+        </div>
+        <div class="admin-nav-item" id="navFilmes" onclick="goTo('admin-filmes')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5"/></svg>
+          Filmes
+        </div>
+        <div class="admin-nav-item active" id="navSalas" onclick="goTo('admin-salas')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Salas
+        </div>
+        <div class="admin-nav-item" id="navSessoes" onclick="goTo('admin-sessoes')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Sessões
+        </div>
+        <div class="admin-nav-item" id="navRelatorios" onclick="goTo('admin-relatorios')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Relatórios
+        </div>
+      </nav>
+
+      <div class="admin-sidebar-bottom">
+        <div class="admin-nav-sair" onclick="goTo('login')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          ↔ Sair
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-body">
+        <div class="admin-panel-section active" id="panel-salas">
+          <div class="adm-page-header">
+            <div>
+              <div class="adm-page-title">Salas</div>
+              <div class="adm-page-sub">Capacidade e ocupação por sala</div>
+            </div>
+            <button class="adm-add-btn" onclick="showToast('Formulário de nova sala em breve','#3b82f6')">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Adicionar Sala
+            </button>
+          </div>
+
+          <div class="adm-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Buscar salas..."/>
+          </div>
+
+          <div class="adm-section-label">3 salas disponíveis</div>
+
+          <div class="adm-card">
+            <div class="adm-card-header">
+              <span class="adm-card-header-title">Salas de Exibição</span>
+              <span class="adm-card-header-badge">Ocupação em tempo real</span>
+            </div>
+
+            <div class="adm-sala-row">
+              <div class="adm-sala-icon">🎬</div>
+              <div class="adm-sala-info">
+                <div class="adm-sala-name">Sala 1</div>
+                <div class="adm-sala-cap">Capacidade: 200 pessoas</div>
+              </div>
+              <div class="adm-sala-right">
+                <div class="adm-sala-occ-label">Ocupação: <span id="sala1Pct">0%</span></div>
+                <div class="adm-sala-occ-bar-bg">
+                  <div class="adm-sala-occ-bar" id="sala1Bar" style="width:0%;background:#E31C1C;"></div>
+                </div>
+                <button class="adm-btn default" onclick="showToast('Editando Sala 1...','#3b82f6')">Editar</button>
+              </div>
+            </div>
+
+            <div class="adm-sala-row">
+              <div class="adm-sala-icon">🎬</div>
+              <div class="adm-sala-info">
+                <div class="adm-sala-name">Sala 2</div>
+                <div class="adm-sala-cap">Capacidade: 180 pessoas</div>
+              </div>
+              <div class="adm-sala-right">
+                <div class="adm-sala-occ-label">Ocupação: <span id="sala2Pct">0%</span></div>
+                <div class="adm-sala-occ-bar-bg">
+                  <div class="adm-sala-occ-bar" id="sala2Bar" style="width:0%;background:#c8960c;"></div>
+                </div>
+                <button class="adm-btn default" onclick="showToast('Editando Sala 2...','#3b82f6')">Editar</button>
+              </div>
+            </div>
+
+            <div class="adm-sala-row">
+              <div class="adm-sala-icon">🎬</div>
+              <div class="adm-sala-info">
+                <div class="adm-sala-name">Sala 3</div>
+                <div class="adm-sala-cap">Capacidade: 150 pessoas</div>
+              </div>
+              <div class="adm-sala-right">
+                <div class="adm-sala-occ-label">Ocupação: <span id="sala3Pct">0%</span></div>
+                <div class="adm-sala-occ-bar-bg">
+                  <div class="adm-sala-occ-bar" id="sala3Bar" style="width:0%;background:#3b82f6;"></div>
+                </div>
+                <button class="adm-btn default" onclick="showToast('Editando Sala 3...','#3b82f6')">Editar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="adm-pagination">
+            <span class="adm-pag-info">Página 1 de 1</span>
+            <div class="adm-pag-btns">
+              <button class="adm-pag-btn">‹‹</button>
+              <button class="adm-pag-btn cur">1</button>
+              <button class="adm-pag-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
